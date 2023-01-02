@@ -1,0 +1,119 @@
+body{
+    background-color: #434A59;
+}
+#mainApp{
+    display: flex;
+    flex-direction: column;
+    width: 540px;
+    height: 708px;
+    margin: auto;
+    border: 1px solid;
+}
+.header{
+    /* margin: auto; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid;
+    color:#FFFFFF;
+    margin-bottom: 20px;
+}
+.title{
+    display: flex;
+    align-items: flex-end;
+}
+.theme{
+    display: flex;
+    border: 1px solid;
+}
+#themeLabel{
+    border: 1px solid;
+    display: flex;
+   
+    align-items: flex-end;
+}
+.themeSelectorLabel{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 1px solid;
+}
+.themeSelectorButton{
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid;
+}
+.themeSelectorButton #theme1, #theme2, #theme3{
+    border-radius: 50%;
+}
+#table{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    border: 2px solid;
+    /* margin:auto; */
+}
+#displayArea{
+    width: 100%;
+    border-color: white;
+    margin-bottom: 20px;
+}
+.button{
+    width:101px;
+    height: 64px;
+    border-radius: 10px;
+    background-color: #EAE3DC;
+    color: #434A59;
+    border: 1px solid #afacaa;
+    font-size: 40px;
+    /* border-color: black; */
+    margin-right: 10px;
+    box-shadow: 0px 5px 2px #eae3dcb2;
+}
+#textval{
+    width: 535px;
+    height: 128px;
+    border-radius:10px;
+    font-size: 56px;
+    font-weight: 700;
+    text-align: right;
+    background-color: #181F33;
+    color: white;
+    /* border-color: white; */
+}
+#keypad{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 480px;
+    /* border: 2px solid red; */
+    background-color: #242D44;
+    border-radius: 10px;
+    margin: auto;
+}
+.first-row, .second-row, .third-row, .fourth-row, .fifth-row{
+    display: flex;
+    /* justify-content: space-between; */
+    margin: 10px;
+}
+#clearScreen, #calculate{
+    width:210px;
+    height:64px;
+    margin-right: 15.3px;
+    color: #fff;
+}
+#clearScreen{
+    background-color: #647198;
+    border: 1px solid #647198;
+    box-shadow: 0px 5px 2px #6471983a;
+}
+#calculate{
+    background-color: #D03F2F;
+    border: 1px solid #D03F2F;
+    box-shadow: 0px 5px 2px #c4200dd5;
+}
