@@ -15,6 +15,8 @@ let themeSelectArea= document.getElementById("themeSelectorButton");
 let buttons= document.getElementsByClassName('button');
 
 
+textInput.style.pointerEvents='none';
+
 function display(val){
     textInput.value+=val;
 }
