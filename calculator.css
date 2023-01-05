@@ -12,7 +12,7 @@ body{
     margin: auto;
     /* border: 1px solid; */
 }
-.header{
+#header{
     /* margin: auto; */
     width: 100%;
     display: flex;
@@ -51,7 +51,7 @@ body{
     
     /* border: 1px solid; */
 }
-.themeSelectorButton{
+#themeSelectorButton{
     width: 71px;
     height: 26px;
     background-color: #242D44;
@@ -69,7 +69,10 @@ body{
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: #D03F2F;
+    /* background-color: #D03F2F; */
+}
+.button0:hover{
+    cursor: pointer;
 }
 #table{
     display: flex;
