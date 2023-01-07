@@ -1,6 +1,4 @@
-document.onkeydown = function (e) {
-    return false;
-}
+const useDark= window.matchMedia("(prefers-color-scheme: dark)");//captures existing window theme
 
 let headerTexts= document.getElementById("header");
 let textInput = document.getElementById("textval");
@@ -14,8 +12,11 @@ let keypadArea= document.getElementById('keypad');
 let themeSelectArea= document.getElementById("themeSelectorButton");
 let buttons= document.getElementsByClassName('button');
 
+textInput.onkeydown = function (e) {//Prevents calculator screen from taking inputs from keyboard
+    return false;
+}
 
-textInput.style.pointerEvents='none';
+textInput.style.pointerEvents='none';//Prevents cursor display on calculator screen onmouseClick
 
 function display(val){
     textInput.value+=val;
@@ -34,7 +35,9 @@ solve.onclick =function(){
 function clr(){
     textInput.value= "";
 }
-theme1.onclick= function(){
+// theme1.onclick= darkTheme();
+
+function darkTheme(){
     document.body.style.backgroundColor='#434A59';
     themeSelectArea.style.backgroundColor='#242D44';
     headerTexts.style.color='#FFF';
@@ -63,7 +66,7 @@ theme1.onclick= function(){
         resetButton.style.boxShadow='0px 5px 2px #464f6a';
     }
 }
-theme2.onclick= function(){
+function lightTheme(){
     document.body.style.backgroundColor='#E6E6E6';
     themeSelectArea.style.backgroundColor='#D2CDCD';
     headerTexts.style.color='black';
@@ -94,7 +97,7 @@ theme2.onclick= function(){
         resetButton.style.boxShadow='0px 5px 2px #214D51';
     }
 }
-theme3.onclick= function(){
+function ultraDark(){
     document.body.style.backgroundColor='#17062A';
     themeSelectArea.style.backgroundColor='#1E0936';
     headerTexts.style.color='#FFE53D';
@@ -125,3 +128,11 @@ theme3.onclick= function(){
         resetButton.style.boxShadow='0px 5px 2px #880BC4'
     }
 }
+if(useDark.matches){
+    darkTheme();
+}else{
+    lightTheme();
+}
+theme1.onclick=(function() {darkTheme()});
+theme2.onclick=(function() {lightTheme()});
+theme3.onclick=(function() {ultraDark()});
