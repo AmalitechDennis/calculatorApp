@@ -3,14 +3,21 @@
 body{
     background-color: #434A59;
     font-family: 'League Spartan', sans-serif;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: flex-end;
+    /* margin: auto; */
 }
 #mainApp{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 540px;
-    height: 708px;
-    margin: auto;
-    /* border: 1px solid; */
+    height: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 #header{
     /* margin: auto; */
@@ -84,7 +91,7 @@ body{
 }
 #displayArea{
     display: flex;
-    width: 535px;
+    width: /*535px*/100%;
     height: 128px;
     justify-content: center;
     align-items: center;
@@ -103,6 +110,9 @@ body{
     margin-right: 20px;
     box-shadow: 0px 5px 2px #eae3dcb2;
 }
+.button:hover{
+    cursor: pointer;
+}
 #textval{
     width: 100%;
     height: auto;
@@ -120,7 +130,7 @@ body{
 #keypad{
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     width: 100%;
     height: 480px;
@@ -164,4 +174,66 @@ body{
     border: 1px solid #647198;
     color: #fff;
     box-shadow: 0px 5px 2px #64719850;
+}
+
+@media only screen and (max-device-width:480px){
+    #mainApp{
+        width:400px;
+        margin-top: 10%;
+    }
+    #dispalyArea{
+        display: flex;
+        width: /*357px*/100%;
+        height: 88px;
+        /* margin: auto; */
+        justify-content: center;
+        align-items: center;
+    }
+    #keypad{
+        height:100%;
+    }
+    .button{
+        width: 70px;
+        font-size: 32px;
+    }
+    #themeSelectorButton{
+        width: 71px;
+        height: 26px;
+    }
+    #textval{
+        display: flex;
+        font-size: 40px;
+        justify-content: center;
+        align-items: center;
+    }
+    .first-row, .second-row, .third-row, .fourth-row, .fifth-row{
+        margin-right: -10px;
+    }
+    #clearScreen, #calculate{
+        width:/*133*/163px;
+    }
+}
+
+@media screen and (max-device-height:600px) and (max-device-width:1024px) {
+    #mainApp{
+        margin-top: 15px;
+        margin-bottom: 5px;
+        height: 500px;
+    }
+    #displayArea{
+        height: 30px;
+    }
+    #textval{
+        height: 30px;
+        font-size: 28px;
+        padding: 10px;
+    }
+    .button{
+        /* width: 60px; */
+        font-size: 28px;
+        height: 44px;
+    }
+    #keypad{
+        height: auto;
+    }
 }
