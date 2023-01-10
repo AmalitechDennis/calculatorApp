@@ -1,4 +1,5 @@
-const useDark= window.matchMedia("(prefers-color-scheme: dark)");//captures existing window theme
+//captures existing window theme
+const useDark= window.matchMedia("(prefers-color-scheme: dark)");
 
 let headerTexts= document.getElementById("header");
 let textInput = document.getElementById("textval");
@@ -12,32 +13,47 @@ let keypadArea= document.getElementById('keypad');
 let themeSelectArea= document.getElementById("themeSelectorButton");
 let buttons= document.getElementsByClassName('button');
 
-textInput.onkeydown = function (e) {//Prevents calculator screen from taking inputs from keyboard
-    return false;
-}
-
-textInput.style.pointerEvents='none';//Prevents cursor display on calculator screen onmouseClick
-
+//displays input keys on screen
 function display(val){
     textInput.value+=val;
+    textInput.value= insertComma(textInput.value);
 }
+//deletes element on screen
 delElement.onclick = function(){
     textInput.value=textInput.value.slice(0,-1);
 }
+//displays calculted result
 solve.onclick =function(){
-    if(typeof eval(textInput.value) == "undefined"){
+    try{
+        if(typeof eval(textInput.value) == "undefined"){
+            clr();
+        }else{
+            let result=eval(textInput.value.replaceAll(',',''));//removes comma from digits for proper evaluation
+            textInput.value= insertComma(result);//inserts comma back for display
+        } 
+    }catch(err){
         clr();
-    }else{
-        textInput.value= eval(textInput.value);
-    } 
-    
+    }
 }
+//function to insert comma after 3 digits
+function insertComma(num){
+    let str = num.toString().split('.');
+    if (str[0].length >= 4) {
+        str[0] = str[0].replaceAll(',','');
+        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    }
+    if (str[1] && str[1].length >= 4) {
+        str[1] = str[1].replace(/(\d{3})/g, '$1,');
+    }
+    return str.join('.');
+}
+//clears screen area
 function clr(){
     textInput.value= "";
 }
-// theme1.onclick= darkTheme();
-
+//css styles for darkTheme
 function darkTheme(){
+    document.documentElement.className='darkTheme';
     document.body.style.backgroundColor='#434A59';
     themeSelectArea.style.backgroundColor='#242D44';
     headerTexts.style.color='#FFF';
@@ -66,7 +82,9 @@ function darkTheme(){
         resetButton.style.boxShadow='0px 5px 2px #464f6a';
     }
 }
+//css styles for lightTheme
 function lightTheme(){
+    document.documentElement.className='lightTheme';
     document.body.style.backgroundColor='#E6E6E6';
     themeSelectArea.style.backgroundColor='#D2CDCD';
     headerTexts.style.color='black';
@@ -97,7 +115,9 @@ function lightTheme(){
         resetButton.style.boxShadow='0px 5px 2px #214D51';
     }
 }
-function ultraDark(){
+//css styles for contrastTheme
+function contrastTheme(){
+    document.documentElement.className='contrastTheme';
     document.body.style.backgroundColor='#17062A';
     themeSelectArea.style.backgroundColor='#1E0936';
     headerTexts.style.color='#FFE53D';
@@ -128,11 +148,13 @@ function ultraDark(){
         resetButton.style.boxShadow='0px 5px 2px #880BC4'
     }
 }
+//Selects theme based on system theme
 if(useDark.matches){
     darkTheme();
 }else{
     lightTheme();
 }
+//Manual theme selection
 theme1.onclick=(function() {darkTheme()});
 theme2.onclick=(function() {lightTheme()});
-theme3.onclick=(function() {ultraDark()});
+theme3.onclick=(function() {contrastTheme()});

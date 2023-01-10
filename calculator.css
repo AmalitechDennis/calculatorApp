@@ -1,13 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@500;900&family=League+Spartan:wght@700&display=swap');
-
+.darkTheme{
+    --selector-color:#D96559;
+    --button-color:#f4f0ec;
+    --reset-color:#929bb7;
+    --equal-sign-color:#de796d;
+}
+.lightTheme{
+    --selector-color:#D96559;
+    --button-color:#f4f0ec;
+    --reset-color:#52b1b9;
+    --equal-sign-color:#fd781a;
+}
+.contrastTheme{
+    --selector-color:#2cfff2;
+    --button-color:#583085;
+    --reset-color:#880bc4;
+    --equal-sign-color:#2cfff2;
+}
 body{
     background-color: #434A59;
     font-family: 'League Spartan', sans-serif;
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: flex-end;
-    /* margin: auto; */
 }
 #mainApp{
     display: flex;
@@ -80,6 +95,7 @@ body{
 }
 .button0:hover{
     cursor: pointer;
+    background-color: var(--selector-color) !important;
 }
 #table{
     display: flex;
@@ -112,6 +128,8 @@ body{
 }
 .button:hover{
     cursor: pointer;
+    background-color: var(--button-color) !important;
+    /* opacity: 0.3; */
 }
 #textval{
     width: 100%;
@@ -164,16 +182,25 @@ body{
     border: 1px solid #647198;
     box-shadow: 0px 5px 2px #6471983a;
 }
+#clearScreen:hover{
+    background-color: var(--reset-color) !important;
+}
 #calculate{
     background-color: #D03F2F;
     border: 1px solid #D03F2F;
     box-shadow: 0px 5px 2px #c4200dd5;
+}
+#calculate:hover{
+    background-color: var(--equal-sign-color) !important;
 }
 #delete{
     background-color: #647198;
     border: 1px solid #647198;
     color: #fff;
     box-shadow: 0px 5px 2px #64719850;
+}
+#delete:hover{
+    background-color: var(--reset-color) !important;
 }
 
 @media only screen and (max-device-width:480px){
