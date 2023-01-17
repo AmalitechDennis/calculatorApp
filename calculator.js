@@ -14,6 +14,7 @@ let themeSelectArea= document.getElementById("themeSelectorButton");
 let buttons= document.getElementsByClassName('button');
 let indexAtOperatorClick;
 let indexAtEqualSignClick=0;//checks whether the equal sign button has been clicked
+let previousScreenContent;
 //displays input keys on screen
 function display(val){
     if((_.isEmpty(textInput.value))&&((val==='+')||(val==='/')||(val==='*'))){
@@ -70,7 +71,8 @@ function adjustFontSize(offset){//variable offset to take care of commas
 //deletes element on screen
 delElement.onclick = function(){
     if(indexAtEqualSignClick===1){
-        clr();
+        // clr();
+        textInput.value=previousScreenContent;
     }else{
         textInput.value=textInput.value.slice(0,-1);
         textInput.value=insertComma(textInput.value);
@@ -85,6 +87,7 @@ solve.onclick =function(){
             clr();
         }else{
             indexAtEqualSignClick=1;
+            previousScreenContent=textInput.value.toString();
             adjustFontSize(0);
             let result=eval(textInput.value.replaceAll(',',''));//removes comma from digits for proper evaluation
             adjustFontSize(3);
