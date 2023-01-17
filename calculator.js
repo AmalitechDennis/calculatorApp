@@ -12,15 +12,71 @@ let theme3= document.getElementById('theme3');
 let keypadArea= document.getElementById('keypad');
 let themeSelectArea= document.getElementById("themeSelectorButton");
 let buttons= document.getElementsByClassName('button');
-
+let indexAtOperatorClick;
+let indexAtEqualSignClick=0;//checks whether the equal sign button has been clicked
 //displays input keys on screen
 function display(val){
-    textInput.value+=val;
-    textInput.value= insertComma(textInput.value);
+    if((_.isEmpty(textInput.value))&&((val==='+')||(val==='/')||(val==='*'))){
+        clr(); 
+    }//consecutive operator display
+    else if(((textInput.value.slice(-1)==='+'))&&(val==='+')){
+        textInput.value=textInput.value;
+    }
+    else if(((textInput.value.slice(-1)==='-'))&&(val==='-')){
+        textInput.value=textInput.value;
+    }else if(((textInput.value.slice(-1)==='/'))&&(val==='/')){
+        textInput.value=textInput.value;
+    }else if(((textInput.value.slice(-1)==='*'))&&(val==='*')){
+        textInput.value=textInput.value;
+    }else if(((textInput.value.slice(-1)==='.'))&&(val==='.')){
+        textInput.value=textInput.value;
+    }//Initial operator display
+    else if(((textInput.value.slice(-1)==='-'))&&((val==='+')||(val==='-')||(val==='*')||(val==='/'))){
+        textInput.value=textInput.value.slice(0,-1);
+        textInput.value+=val;
+    }else if(((textInput.value.slice(-1)==='+'))&&((val==='+')||(val==='-')||(val==='*')||(val==='/'))){
+        textInput.value=textInput.value.slice(0,-1);
+        textInput.value+=val;
+    }else if(((textInput.value.slice(-1)==='*'))&&((val==='+')||(val==='-')||(val==='*')||(val==='/'))){
+        textInput.value=textInput.value.slice(0,-1);
+        textInput.value+=val;
+    }else if(((textInput.value.slice(-1)==='/'))&&((val==='+')||(val==='-')||(val==='*')||(val==='/'))){
+        textInput.value=textInput.value.slice(0,-1);
+        textInput.value+=val;
+    }//Inserting operator after a number
+    else if(!(_.isEmpty(textInput.value))&&(val==='+')||(val==='-')||(val==='*')||(val==='/')){
+        textInput.value+=val;
+        indexAtOperatorClick=textInput.value.length;
+        textInput.value= insertComma1((textInput.value),(indexAtOperatorClick));
+    }else{
+        textInput.value+=val;
+        textInput.value= insertComma1((textInput.value),(indexAtOperatorClick));
+    }
+    indexAtEqualSignClick=0;
+    adjustFontSize(0);
+    return textInput.value;
+}
+function adjustFontSize(offset){//variable offset to take care of commas
+    if((textInput.value.length)>26-offset){
+        textInput.style.fontSize='26px';
+    }else if((textInput.value.length)>19-offset){
+        textInput.style.fontSize='36px';
+    }else if((textInput.value.length)>15-offset){
+        textInput.style.fontSize='46px';
+    }else{
+        textInput.style.fontSize='56px';
+    }
 }
 //deletes element on screen
 delElement.onclick = function(){
-    textInput.value=textInput.value.slice(0,-1);
+    if(indexAtEqualSignClick===1){
+        clr();
+    }else{
+        textInput.value=textInput.value.slice(0,-1);
+        textInput.value=insertComma(textInput.value);
+        textInput.value.length-1;
+        adjustFontSize(1);
+    }
 }
 //displays calculted result
 solve.onclick =function(){
@@ -28,14 +84,36 @@ solve.onclick =function(){
         if(typeof eval(textInput.value) == "undefined"){
             clr();
         }else{
+            indexAtEqualSignClick=1;
+            adjustFontSize(0);
             let result=eval(textInput.value.replaceAll(',',''));//removes comma from digits for proper evaluation
+            adjustFontSize(3);
             textInput.value= insertComma(result);//inserts comma back for display
+            adjustFontSize(0);
         } 
     }catch(err){
         clr();
     }
 }
 //function to insert comma after 3 digits
+function insertComma1(input, index){
+    let str = input.toString().split('.');
+    if (str[0].length >=4) {
+        if((input.includes('/'))||(input.includes('+'))||(input.includes('-'))||(input.includes('*'))){
+            let str1=str[0].substring(0, (index));
+            console.log(str1);
+            let str2=str[0].substring(index);
+            console.log(str2);
+            str2= str2.replaceAll(',','');
+            str2= str2.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+            str[0]= str1.concat(str2);
+        }else{
+            str[0] = str[0].replaceAll(',','');
+            str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+        }
+    }
+    return str.join('.');
+}
 function insertComma(num){
     let str = num.toString().split('.');
     if (str[0].length >= 4) {
@@ -47,6 +125,7 @@ function insertComma(num){
 //clears screen area
 function clr(){
     textInput.value= "";
+    textInput.style.fontSize='56px';
 }
 //css styles for darkTheme
 function darkTheme(){
