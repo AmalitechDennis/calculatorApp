@@ -73,12 +73,17 @@ delElement.onclick = function(){
     if(indexAtEqualSignClick===1){
         // clr();
         textInput.value=previousScreenContent;
+        adjustFontSize(3);
+        // indexAtEqualSignClick=0;
     }else{
         textInput.value=textInput.value.slice(0,-1);
-        textInput.value=insertComma(textInput.value);
-        textInput.value.length-1;
-        adjustFontSize(1);
+        adjustFontSize(3);
+        textInput.value=insertComma1((textInput.value),(indexAtOperatorClick));
+        // textInput.value.length-1;
+        adjustFontSize(3);
+        indexAtEqualSignClick=0;
     }
+    indexAtEqualSignClick=0;
 }
 //displays calculted result
 solve.onclick =function(){
