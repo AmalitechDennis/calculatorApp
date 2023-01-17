@@ -1,6 +1,6 @@
 //captures existing window theme
 const useDark= window.matchMedia("(prefers-color-scheme: dark)");
-
+//variables
 let headerTexts= document.getElementById("header");
 let textInput = document.getElementById("textval");
 let solve= document.getElementById('calculate');
@@ -109,9 +109,7 @@ function insertComma1(input, index){
     if (str[0].length >=4) {
         if((input.includes('/'))||(input.includes('+'))||(input.includes('-'))||(input.includes('*'))){
             let str1=str[0].substring(0, (index));
-            console.log(str1);
             let str2=str[0].substring(index);
-            console.log(str2);
             str2= str2.replaceAll(',','');
             str2= str2.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
             str[0]= str1.concat(str2);
